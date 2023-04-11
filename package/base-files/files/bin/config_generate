@@ -147,7 +147,7 @@ generate_network() {
 		static)
 			local ipad
 			case "$1" in
-				lan) ipad=${ipaddr:-"192.168.1.1"} ;;
+				lan) ipad=${ipaddr:-"192.168.11.1"} ;;
 				*) ipad=${ipaddr:-"192.168.$((addr_offset++)).1"} ;;
 			esac
 
@@ -157,6 +157,9 @@ generate_network() {
 				set network.$1.proto='static'
 				set network.$1.ipaddr='$ipad'
 				set network.$1.netmask='$netm'
+				add_list dhcp.$1.dhcp_option='1,$netm'
+				add_list dhcp.$1.dhcp_option='3,$ipad'
+				add_list dhcp.$1.dhcp_option='6,$ipad'
 			EOF
 			[ -e /proc/sys/net/ipv6 ] && uci set network.$1.ip6assign='60'
 		;;
@@ -292,10 +295,13 @@ generate_switch() {
 }
 
 generate_static_system() {
+	local board_name="$(awk -F',' '{print $1}' /tmp/sysinfo/board_name | tr ' ' '_' | tr -d ' \n')"
+	[ -z "$board_name" ] && board_name="LEDE"
+
 	uci -q batch <<-EOF
 		delete system.@system[0]
 		add system system
-		set system.@system[-1].hostname='OpenWrt'
+		set system.@system[-1].hostname='$board_name'
 		set system.@system[-1].timezone='UTC'
 		set system.@system[-1].ttylogin='0'
 		set system.@system[-1].log_size='64'
@@ -309,6 +315,10 @@ generate_static_system() {
 		add_list system.ntp.server='time1.cloud.tencent.com'
 		add_list system.ntp.server='time.ustc.edu.cn'
 		add_list system.ntp.server='cn.pool.ntp.org'
+		add_list system.ntp.server='182.92.12.11'
+		add_list system.ntp.server='10.0.8.150'
+		add_list system.ntp.server='10.0.0.195'
+		add_list system.ntp.server='10.0.0.211'
 	EOF
 
 	if json_is_a system object; then
