@@ -29,4 +29,5 @@ git-src
 .project
 .cproject
 .ccache
-.vscode*
+.vscode/ipch/
+.vscode/settings.json

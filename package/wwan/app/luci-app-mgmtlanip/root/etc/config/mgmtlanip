@@ -1,0 +1,9 @@
+
+config service
+	option enabled '1'
+	option second '10'
+	option interface_name 'br-lan'
+	option interface_index '0'
+	option ipv4_address '192.168.111.254'
+	option ipv4_netmask '255.255.255.0'
+

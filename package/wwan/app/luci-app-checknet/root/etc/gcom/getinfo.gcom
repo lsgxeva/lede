@@ -1,0 +1,153 @@
+# note: get wwan info
+# file: getinfo.gcom
+# exec: comgt -d /dev/ttyUSB2 -s /etc/gcom/getinfo.gcom
+
+opengt
+ set com 115200n81
+ set comecho off
+ set senddelay 0.05
+ waitquiet 3 0.5
+ flash 0.1
+
+:start
+ print "===>","StartTime: ",$time(),"\n"
+
+ print "-->","Get TA Manufacturer Identification Information:","\n"
+ send "AT+GMI^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get TA Model Identification Information:","\n"
+ send "AT+GMM^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get TA Revision Identification Information:","\n"
+ send "AT+GMR^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Module IMEI Information:","\n"
+ send "AT+GSN^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Module IMSI Information:","\n"
+ send "AT+CIMI^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get SIM card ICCID Information:","\n"
+ send "AT+CCID^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get SIM Card Detection Status:","\n"
+ send "AT+QSIMDET?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Functionality Status:","\n"
+ send "AT+CFUN?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone PIN Ready Status:","\n"
+ send "AT+CPIN?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Signal Quality Status:","\n"
+ send "AT+CSQ^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Network Registration Status:","\n"
+ send "AT+CREG?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Network Operator Status:","\n"
+ send "AT+COPS?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Network Information:","\n"
+ print "Format = ","Act,Oper,Band,Channel","\n"
+ send "AT+QNWINFO^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Frequency Band Information:","\n"
+ print "Format = ","BandVal,LteBandVal,TdsBandVal","\n"
+ send "AT+QCFG=\"band\"?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Network Searching Mode Status:","\n"
+ print "Searching Mode to 4G LTE only = ","3","\n"
+ print "Searching Mode to 3G WCDMA only = ","2","\n"
+ print "Searching Mode to 2G GSM only = ","1","\n"
+ print "Searching Mode to auto = ","0","\n"
+ send "AT+QCFG=\"nwscanmode\"?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Network Searching Mode Status:","\n"
+ print "Searching Mode to LTE only = ","16","\n"
+ print "Searching Mode to GSM,WCDMA,LTE = ","28","\n"
+ print "Searching Mode to GSM,WCDMA = ","12","\n"
+ send "AT+QCFG=\"nwscanmodeex\"?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Network Device Status:","\n"
+ send "AT+QNETDEVSTATUS?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Network Service Domain Status:","\n"
+ send "AT+QCFG=\"servicedomain\"?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Activate or Deactivate PDP Context Status:","\n"
+ send "AT+CGACT?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Attachment or Detachment of PS Status:","\n"
+ send "AT+CGATT?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Define PDP Contex Information:","\n"
+ send "AT+CGDCONT?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone PDP Authentication Type in BIP Process Status:","\n"
+ send "AT+QCFG=\"bip/auth\"?^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone PDP Address Information:","\n"
+ send "AT+CGPADDR^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Network issued APN and assigned IP address Information:","\n"
+ send "AT+CGCONTRDP^m"
+ get 2 "" $s
+ print $s
+
+ print "-->","Get Phone Packet Data Counter Information:","\n"
+ send "AT+QGDCNT?^m"
+ get 2 "" $s
+ print $s
+
+ print "<===","EndTime: ",$time(),"\n"
+
+:continue
+ exit 0
+

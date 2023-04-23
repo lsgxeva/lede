@@ -5,7 +5,7 @@ mp = Map("gobinetmodem")
 mp.title = translate("gobinet Modem Server")
 mp.description = translate("Modem Server For OpenWrt")
 
-s = mp:section(TypedSection, "service", "Base Setting")
+s = mp:section(TypedSection, "service", translate("Base Setting"))
 s.anonymous = true
 
 enabled = s:option(Flag, "enabled", translate("Enable"))

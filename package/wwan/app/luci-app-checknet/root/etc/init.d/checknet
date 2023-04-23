@@ -1,0 +1,50 @@
+#!/bin/sh /etc/rc.common
+# Copyright (C) 2006-2014 OpenWrt.org
+
+START=99
+STOP=16
+USE_PROCD=1
+
+run_checknet()
+{
+	local enabled
+	config_get_bool enabled $1 enabled
+
+	echo "run checknet" >> /tmp/log4g
+
+	if [ "$enabled" = "1" ]; then
+		local minute exec
+		config_get minute $1 minute
+		if [ -z "$minute" ] ; then
+			minute="1"
+		fi
+		exec="/usr/sbin/checknet.sh"
+		chmod a+x $exec
+		procd_open_instance
+		procd_set_param command $exec
+		procd_append_param command $minute
+		procd_set_param respawn
+		echo "checknet service has started."
+		procd_close_instance
+	fi
+}
+
+
+service_triggers()
+{
+	procd_add_reload_trigger "checknet"
+}
+
+start_service() 
+{
+	config_load checknet
+	config_foreach run_checknet service
+}
+
+stop_service()
+{
+	echo "checknet stop" >> /tmp/log4g
+	ps | grep -i checknet | grep -v grep  | awk '{print $1}' | xargs kill -s 9 2>/dev/null
+	echo "checknet service has stoped."
+}
+

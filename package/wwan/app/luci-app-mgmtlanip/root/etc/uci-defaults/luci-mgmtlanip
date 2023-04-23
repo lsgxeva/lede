@@ -1,0 +1,11 @@
+#!/bin/sh
+
+uci -q batch <<-EOF >/dev/null
+	delete ucitrack.@mgmtlanip[-1]
+	add ucitrack mgmtlanip
+	set ucitrack.@mgmtlanip[-1].init=mgmtlanip
+	commit ucitrack
+EOF
+
+rm -f /tmp/luci-indexcache
+exit 0

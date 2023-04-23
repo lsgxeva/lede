@@ -5,7 +5,7 @@ mp = Map("pcimodem")
 mp.title = translate("PCI Modem Server")
 mp.description = translate("Modem Server For OpenWrt")
 
-s = mp:section(TypedSection, "service", "Base Setting")
+s = mp:section(TypedSection, "service", translate("Base Setting"))
 s.anonymous = true
 
 enabled = s:option(Flag, "enabled", translate("Enable"))
