@@ -1,0 +1,86 @@
+msgid ""
+msgstr ""
+
+"Project-Id-Version: \n"
+"POT-Creation-Date: \n"
+"PO-Revision-Date: \n"
+"Last-Translator: dingpengyu <dingpengyu06@gmail.com>\n"
+"Language-Team: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Language: zh_CN\n"
+"X-Generator: Poedit 2.3.1\n"
+
+msgid "Base Setting"
+msgstr "基本设置"
+
+msgid "Double LTE Checknet Service"
+msgstr "双移动网络检测服务"
+
+msgid "Double LTE Checknet Service For OpenWrt"
+msgstr "OpenWrt 网络检测服务"
+
+msgid "Cycle Minute"
+msgstr "周期运行间隔分钟"
+
+msgid "Log Enable"
+msgstr "记录到日志"
+
+msgid "Board Name"
+msgstr "主板名称"
+
+msgid "Public DNS IP"
+msgstr "公网 DNS IP 地址"
+
+msgid "Wan Link Count"
+msgstr "出口链路数量"
+
+msgid "Wan Firewall Zone Name"
+msgstr "Wan 防火墙区域名称"
+
+msgid "LTE1 Firewall Zone Name"
+msgstr "LTE1 防火墙区域名称"
+
+msgid "LTE2 Firewall Zone Name"
+msgstr "LTE2 防火墙区域名称"
+
+msgid "Wan Interface Name"
+msgstr "Wan 接口名称"
+
+msgid "LTE1 Interface Name"
+msgstr "LTE1 接口名称"
+
+msgid "LTE2 Interface Name"
+msgstr "LTE2 接口名称"
+
+msgid "LTE1 Modem Device Name"
+msgstr "LTE1 设备名称"
+
+msgid "LTE2 Modem Device Name"
+msgstr "LTE2 设备名称"
+
+msgid "LTE Modem Dial Tool"
+msgstr "LTE 拨号工具"
+
+msgid "China Mobile Dial APN"
+msgstr "中国移动拨号 APN"
+
+msgid "China Unicom Dial APN"
+msgstr "中国联通拨号 APN"
+
+msgid "China Telecom Dial APN"
+msgstr "中国电信拨号 APN"
+
+msgid "ttyUSB Device Count"
+msgstr "ttyUSB 设备数量"
+
+msgid "Uart COM ttyUSB Device"
+msgstr "串口通信 ttyUSB 设备"
+
+msgid "LTE1 AT ttyUSB Device"
+msgstr "LTE1 AT ttyUSB 设备"
+
+msgid "LTE2 AT ttyUSB Device"
+msgstr "LTE2 AT ttyUSB 设备"
+

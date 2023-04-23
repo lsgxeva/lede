@@ -1,0 +1,48 @@
+# note: get default apn
+# file: defaultapn.gcom
+# exec: comgt -d /dev/ttyUSB2 -s /etc/gcom/defaultapn.gcom
+
+opengt
+ set com 115200n81
+ set comecho off
+ set senddelay 0.05
+ waitquiet 3 0.5
+ flash 0.1
+
+:start
+ send "AT+CIMI^m"
+ waitfor 3 "46000" "46002" "46007" "46008" "46001" "46004" "46006" "46009" "46003" "46005" "46011"
+ if % = -1 goto err
+ if % = 0 goto cmnet
+ if % = 1 goto cmnet
+ if % = 2 goto cmnet
+ if % = 3 goto cmnet
+ if % = 4 goto cmtds
+ if % = 5 goto cmtds
+ if % = 6 goto cmtds
+ if % = 7 goto cmtds
+ if % = 8 goto ctlte
+ if % = 9 goto ctlte
+ if % = 10 goto ctlte
+
+ # deffault
+ goto continue
+
+:cmnet
+ print "cmnet\n"
+ goto continue
+
+:cmtds
+ print "cmtds\n"
+ goto continue
+
+:ctlte
+ print "ctlte\n"
+ goto continue
+
+:err
+ exit 1
+
+:continue
+ exit 0
+
